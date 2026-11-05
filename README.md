@@ -34,3 +34,10 @@ meaningful low-order residual to recover from a non-finite sum, and returning
 `0.0` keeps the result usable in further arithmetic. Signed zeros are treated
 as ordinary finite values, so `two_sum(0.0, 0.0)` returns `(0.0, 0.0)` with a
 positive-signed sum.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
